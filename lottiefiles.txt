@@ -1,0 +1,60 @@
+## 🔥 **Portfolio / Developer Themes**
+
+| Purpose                 | Lottie Preview                                                               | URL                                                                |
+| ----------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| 👨‍💻 Developer Working | ![Preview](https://assets2.lottiefiles.com/private_files/lf30_jtbfg2nb.json) | `https://assets2.lottiefiles.com/private_files/lf30_jtbfg2nb.json` |
+| 💻 Coding Screen        | ![Preview](https://assets7.lottiefiles.com/packages/lf20_jcikwtux.json)      | `https://assets7.lottiefiles.com/packages/lf20_jcikwtux.json`      |
+| ⚙️ Settings / Tools     | ![Preview](https://assets6.lottiefiles.com/packages/lf20_jzv1z8cu.json)      | `https://assets6.lottiefiles.com/packages/lf20_jzv1z8cu.json`      |
+| 🔥 AI Face Scanner      | ![Preview](https://assets9.lottiefiles.com/packages/lf20_gjmecwii.json)      | `https://assets9.lottiefiles.com/packages/lf20_gjmecwii.json`      |
+| 📊 Data Analysis        | ![Preview](https://assets10.lottiefiles.com/packages/lf20_rpgzdd1g.json)     | `https://assets10.lottiefiles.com/packages/lf20_rpgzdd1g.json`     |
+| 📱 App Developer        | ![Preview](https://assets10.lottiefiles.com/packages/lf20_kkflmtur.json)     | `https://assets10.lottiefiles.com/packages/lf20_kkflmtur.json`     |
+
+---
+
+## 📬 **Contact / Social**
+
+| Purpose           | Lottie Preview                                                           | URL                                                            |
+| ----------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| 📬 Contact Form   | ![Preview](https://assets10.lottiefiles.com/packages/lf20_jzv1z8cu.json) | `https://assets10.lottiefiles.com/packages/lf20_jzv1z8cu.json` |
+| 📧 Email Sent     | ![Preview](https://assets10.lottiefiles.com/packages/lf20_urbk83vw.json) | `https://assets10.lottiefiles.com/packages/lf20_urbk83vw.json` |
+| 🌐 Global Connect | ![Preview](https://assets10.lottiefiles.com/packages/lf20_q5pk6p1k.json) | `https://assets10.lottiefiles.com/packages/lf20_q5pk6p1k.json` |
+
+---
+
+## 💼 **Resume / Work**
+
+| Purpose               | Lottie Preview                                                                      | URL                                                                       |
+| --------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| 📄 Resume Writing     | ![Preview](https://assets1.lottiefiles.com/packages/lf20_w51pcehl.json)             | `https://assets1.lottiefiles.com/packages/lf20_w51pcehl.json`             |
+| 💼 Portfolio Showcase | ![Preview](https://assets5.lottiefiles.com/private_files/lf30_editor_jqzfsfhv.json) | `https://assets5.lottiefiles.com/private_files/lf30_editor_jqzfsfhv.json` |
+
+---
+
+## 📘 **Education / Learning**
+
+| Purpose          | Lottie Preview                                                          | URL                                                           |
+| ---------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------- |
+| 📚 Studying      | ![Preview](https://assets2.lottiefiles.com/packages/lf20_fcfjwiyb.json) | `https://assets2.lottiefiles.com/packages/lf20_fcfjwiyb.json` |
+| 🧠 Brain Loading | ![Preview](https://assets2.lottiefiles.com/packages/lf20_tpa51dr0.json) | `https://assets2.lottiefiles.com/packages/lf20_tpa51dr0.json` |
+
+---
+
+## ✅ How to Use in Streamlit
+
+```python
+from streamlit_lottie import st_lottie
+import requests
+
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+animation = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_jzv1z8cu.json")
+
+if animation:
+    st_lottie(animation, height=300)
+```
+
+---
