@@ -95,6 +95,7 @@ Beyond tech, I’m someone who values simplicity, discipline, and the joy of bui
 
     with st.container():
         st.write("---")
+        st.subheader("✈️ Connect With Me")
         st.write("##")
         c1,c2,c3 = st.columns(3)
         with c1:
