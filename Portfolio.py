@@ -27,8 +27,13 @@ with st.container():
             st.subheader("""
             I'm a 4th-year B.Tech student at Aditya Engineering College, passionate about Data Science, AI, ML, and building smart web apps.
             """)
-            st.markdown("""📄 <a href="assets/resume.pdf" download style="text-decoration:none; font-weight:bold;">Download Resume</a>""", unsafe_allow_html=True)
-            
+            with open("assets/resume.pdf", "rb") as file:
+                btn = st.download_button(
+                label="📄 Download Resume",
+                data=file,
+                file_name="Sriram_Resume.pdf",
+                mime="application/pdf"
+            ) 
         with col:
             st.image(image,use_container_width=True)
 st.write('---')
