@@ -27,7 +27,7 @@ with st.container():
             st.subheader("""
             I'm a 4th-year B.Tech student at Aditya Engineering College, passionate about Data Science, AI, ML, and building smart web apps.
             """)
-            st.markdown("📄 [Download Resume](assets/resume.pdf)", unsafe_allow_html=True)
+            st.markdown("""📄 <a href="./static/resume.pdf" download style="text-decoration:none; font-weight:bold;">Download Resume</a>""", unsafe_allow_html=True)
             
         with col:
             st.image(image,use_container_width=True)
