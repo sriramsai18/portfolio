@@ -27,7 +27,7 @@ with st.container():
             st.subheader("""
             I'm a 4th-year B.Tech student at Aditya Engineering College, passionate about Data Science, AI, ML, and building smart web apps.
             """)
-            with open("assets/SRIRAMSAI_CV.pdf", "rb") as file:
+            with open("assets/SRIRAMSAI_RESUME.pdf", "rb") as file:
                 btn = st.download_button(
                 label="📄 Download Resume",
                 data=file,
