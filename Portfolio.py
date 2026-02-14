@@ -17,7 +17,7 @@ lottie_code = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_zrqt
 lottie_code1 = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_w51pcehl.json")
 lottie_code2 = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_gjmecwii.json")
 lottie_code3 = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_kkflmtur.json")
-image = Image.open("assets/NANI.png")
+image = Image.open("assets/NANII.png")
 
 with st.container():
         coll, col = st.columns((2,1)) 
