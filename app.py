@@ -340,27 +340,20 @@ section[data-testid="stMain"]::-webkit-scrollbar-thumb{background:#b8860b!import
 </script>
 """, unsafe_allow_html=True)
 
-_bg_js = ""
-if bg_b64:
-    _bg_js = (
-        "<style>"
-        "html { background: #05040c !important; }"
-        "[data-testid='stAppViewContainer'] { background: transparent !important; }"
-        "[data-testid='stAppViewContainer']::before {"
-        "  content: '';"
-        "  position: fixed; inset: 0; z-index: -1;"
-        "  background-image: url('data:image/jpeg;base64," + bg_b64 + "');"
-        "  background-size: cover; background-position: center;"
-        "  background-attachment: fixed;"
-        "  filter: brightness(0.25);" 
-        "  pointer-events: none;"
-        "}"
-        "section[data-testid='stMain'], [data-testid='block-container'] {"
-        "  background: transparent !important;"
-        "}"
-        "</style>"
-    )
-_bg_tag = _bg_js
+_bg_css = (
+    "<style>"
+    "[data-testid=\"stAppViewContainer\"], .stApp {"
+    "  background-image: url(\"data:image/jpeg;base64," + (bg_b64 or "") + "\") !important;"
+    "  background-size: cover !important;"
+    "  background-position: center !important;"
+    "  background-attachment: fixed !important;"
+    "}"
+    "section[data-testid=\"stMain\"], [data-testid=\"block-container\"] {"
+    "  background: transparent !important;"
+    "}"
+    "</style>"
+) if bg_b64 else ""
+_bg_tag = _bg_css
 
 st.markdown(
     _bg_tag +
@@ -666,6 +659,7 @@ st.markdown("""
     &nbsp;·&nbsp; @2026
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
