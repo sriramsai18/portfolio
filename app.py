@@ -352,7 +352,7 @@ if bg_b64:
         "  background-image: url('data:image/jpeg;base64," + bg_b64 + "');"
         "  background-size: cover; background-position: center;"
         "  background-attachment: fixed;"
-        "  filter: brightness(0.45);"  # ← adjust 0.0-1.0 for darkness
+        "  filter: brightness(0.70);"  # ← adjust 0.0-1.0 for darkness
         "  pointer-events: none;"
         "}"
         "section[data-testid='stMain'], [data-testid='block-container'] {"
@@ -666,4 +666,5 @@ st.markdown("""
     &nbsp;·&nbsp; @2026
 </div>
 """, unsafe_allow_html=True)
+
 
