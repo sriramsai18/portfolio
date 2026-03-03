@@ -535,7 +535,8 @@ with col_e2:
 st.markdown('<div class="gold-div"></div>', unsafe_allow_html=True)
 
 # ── SKILLS ────────────────────────────────────────────────────────────────────
-st.markdown('<div id="skills" class="sec-eyebrow">TECH STACK</div>', unsafe_allow_html=True)
+st.markdown('<div id="skills" class="section">', unsafe_allow_html=True)
+st.markdown('<div class="sec-eyebrow">TECH STACK</div>', unsafe_allow_html=True)
 st.markdown('<div class="sec-title">My <span>Skills</span></div>', unsafe_allow_html=True)
 
 def skill_bar(icon, name, pct):
@@ -704,4 +705,5 @@ st.markdown("""
     &nbsp;·&nbsp; @2026
 </div>
 """, unsafe_allow_html=True)
+
 
