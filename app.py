@@ -49,15 +49,17 @@ html,body,[data-testid="stAppViewContainer"]{background:transparent!important;co
 .nav-link:hover{color:var(--gold3)!important;background:rgba(184,134,11,0.1)!important;}
 .nav-cta{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:1.5px;color:#1a160e!important;text-decoration:none!important;background:var(--gold);padding:8px 20px;border-radius:4px;transition:all 0.25s;margin-left:10px;text-transform:uppercase;font-weight:700;}
 .nav-cta:hover{background:var(--gold2);box-shadow:0 4px 20px rgba(184,134,11,0.45);}
-.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;cursor:pointer;z-index:10001;background:transparent;border:none;padding:4px;}
+.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;cursor:pointer;z-index:10001;padding:4px;}
 .hamburger span{display:block;width:22px;height:2px;background:var(--gold);border-radius:2px;transition:all 0.3s ease;}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger.open span:nth-child(2){opacity:0;}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+/* CSS checkbox magic — #mob-toggle:checked triggers drawer open */
+#mob-toggle:checked ~ .mob-drawer{right:0;}
+#mob-toggle:checked ~ .mob-overlay-label{opacity:1;pointer-events:all;}
+#mob-toggle:checked ~ nav .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+#mob-toggle:checked ~ nav .hamburger span:nth-child(2){opacity:0;}
+#mob-toggle:checked ~ nav .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-overlay-label{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s;cursor:pointer;}
 .mob-drawer{position:fixed;top:0;right:-100%;width:75%;max-width:300px;height:100vh;background:rgba(5,4,12,0.97);backdrop-filter:blur(20px);z-index:10000;transition:right 0.35s cubic-bezier(0.4,0,0.2,1);padding:80px 32px 40px;border-left:1px solid rgba(184,134,11,0.2);display:flex;flex-direction:column;gap:6px;}
-.mob-drawer.open{right:0;}
-.mob-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s;}
-.mob-drawer-overlay.open{opacity:1;pointer-events:all;}
+.mob-close-btn{align-self:flex-end;font-size:1.2rem;color:var(--gold);cursor:pointer;margin-bottom:16px;margin-top:-40px;}
 .mob-nav-link{font-family:'Share Tech Mono',monospace;font-size:0.8rem;letter-spacing:2px;color:rgba(253,252,247,0.7)!important;text-decoration:none!important;padding:14px 0;border-bottom:1px solid rgba(184,134,11,0.1);text-transform:uppercase;transition:color 0.2s;}
 .mob-nav-link:hover{color:var(--gold3)!important;}
 .mob-nav-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:#1a160e!important;text-decoration:none!important;font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:1.5px;font-weight:700;padding:12px 20px;border-radius:4px;margin-top:20px;text-transform:uppercase;}
@@ -353,18 +355,13 @@ section[data-testid="stMain"]::-webkit-scrollbar-thumb{background:#b8860b!import
 </script>
 """, unsafe_allow_html=True)
 
-# ── BACKGROUND: stApp + rgba overlay ─────────────────────────────────────────
-# .stApp is the ONE selector Streamlit Cloud never overrides.
-# We set the bg image on .stApp, then stack a semi-transparent dark rgba on top
-# using a second background layer — no JS, no ::before, just pure CSS.
-# Adjust the rgba alpha (0.55) to control darkness: higher = darker.
 _bg_tag = ""
 if bg_b64:
     _bg_tag = (
         "<style>"
         ".stApp {"
         "  background-image:"
-        "    linear-gradient(rgba(5,4,12,0.79), rgba(5,4,12,0.79)),"
+        "    linear-gradient(rgba(5,4,12,0.80), rgba(5,4,12,0.80)),"
         "    url('data:image/jpeg;base64," + (bg_b64 or "") + "') !important;"
         "  background-size: cover !important;"
         "  background-position: center !important;"
@@ -386,10 +383,13 @@ st.markdown(
     '<div class="glow-orb glow-orb-2"></div>'
     '<div class="glow-orb glow-orb-3"></div>'
     """
-<div class="mob-drawer-overlay" id="mob-overlay"></div>
-<div class="mob-drawer" id="mob-drawer">
+<!-- Pure CSS checkbox hack — works inside Streamlit iframes, zero JS needed -->
+<input type="checkbox" id="mob-toggle" style="display:none !important;">
+<label for="mob-toggle" class="mob-overlay-label"></label>
+<div class="mob-drawer">
+    <label for="mob-toggle" class="mob-close-btn">&#x2715;</label>
     <a class="mob-nav-link" href="#about">About</a>
-    <a class="mob-nav-link" href="#education">Education & Experience</a>
+    <a class="mob-nav-link" href="#education">Education &amp; Experience</a>
     <a class="mob-nav-link" href="#skills">Skills</a>
     <a class="mob-nav-link" href="#certifications">Certifications</a>
     <a class="mob-nav-link" href="#projects">Projects</a>
@@ -400,36 +400,17 @@ st.markdown(
     <a class="nav-brand" href="#hero-eyebrow">SRIRAM <span>SAI</span></a>
     <div class="nav-links">
         <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#education">Education & Experience</a>
+        <a class="nav-link" href="#education">Education &amp; Experience</a>
         <a class="nav-link" href="#skills">Skills</a>
         <a class="nav-link" href="#certifications">Certifications</a>
         <a class="nav-link" href="#projects">Projects</a>
         <a class="nav-link" href="#contact">Contact</a>
     </div>
     <a class="nav-cta" href="mailto:sriramsailaggisetti@gmail.com">LET'S BUILD TOGETHER</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <label for="mob-toggle" class="hamburger">
         <span></span><span></span><span></span>
-    </button>
+    </label>
 </nav>
-<script>
-(function(){
-    function init(){
-        var h=document.getElementById('hamburger');
-        var d=document.getElementById('mob-drawer');
-        var o=document.getElementById('mob-overlay');
-        if(!h||!d||!o){setTimeout(init,100);return;}
-        function openMenu(){h.classList.add('open');d.classList.add('open');o.classList.add('open');}
-        function closeMenu(){h.classList.remove('open');d.classList.remove('open');o.classList.remove('open');}
-        function toggle(){h.classList.contains('open')?closeMenu():openMenu();}
-        h.addEventListener('click',toggle);
-        o.addEventListener('click',closeMenu);
-        var links=d.querySelectorAll('.mob-nav-link,.mob-nav-cta');
-        links.forEach(function(l){l.addEventListener('click',closeMenu);});
-    }
-    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}
-    else{init();}
-})();
-</script>
 <script>
 (function(){
     var canvas=document.getElementById("particle-canvas");
