@@ -49,20 +49,13 @@ html,body,[data-testid="stAppViewContainer"]{background:transparent!important;co
 .nav-link:hover{color:var(--gold3)!important;background:rgba(184,134,11,0.1)!important;}
 .nav-cta{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:1.5px;color:#1a160e!important;text-decoration:none!important;background:var(--gold);padding:8px 20px;border-radius:4px;transition:all 0.25s;margin-left:10px;text-transform:uppercase;font-weight:700;}
 .nav-cta:hover{background:var(--gold2);box-shadow:0 4px 20px rgba(184,134,11,0.45);}
-.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;cursor:pointer;z-index:10001;padding:4px;}
-.hamburger span{display:block;width:22px;height:2px;background:var(--gold);border-radius:2px;transition:all 0.3s ease;}
-/* CSS checkbox magic — #mob-toggle:checked triggers drawer open */
-#mob-toggle:checked ~ .mob-drawer{right:0;}
-#mob-toggle:checked ~ .mob-overlay-label{opacity:1;pointer-events:all;}
-#mob-toggle:checked ~ nav .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-#mob-toggle:checked ~ nav .hamburger span:nth-child(2){opacity:0;}
-#mob-toggle:checked ~ nav .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mob-overlay-label{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s;cursor:pointer;}
-.mob-drawer{position:fixed;top:0;right:-100%;width:75%;max-width:300px;height:100vh;background:rgba(5,4,12,0.97);backdrop-filter:blur(20px);z-index:10000;transition:right 0.35s cubic-bezier(0.4,0,0.2,1);padding:80px 32px 40px;border-left:1px solid rgba(184,134,11,0.2);display:flex;flex-direction:column;gap:6px;}
-.mob-close-btn{align-self:flex-end;font-size:1.2rem;color:var(--gold);cursor:pointer;margin-bottom:16px;margin-top:-40px;}
-.mob-nav-link{font-family:'Share Tech Mono',monospace;font-size:0.8rem;letter-spacing:2px;color:rgba(253,252,247,0.7)!important;text-decoration:none!important;padding:14px 0;border-bottom:1px solid rgba(184,134,11,0.1);text-transform:uppercase;transition:color 0.2s;display:block;width:100%;}.mob-drawer label{display:block;width:100%;cursor:pointer;}
-.mob-nav-link:hover{color:var(--gold3)!important;}
-.mob-nav-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:#1a160e!important;text-decoration:none!important;font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:1.5px;font-weight:700;padding:12px 20px;border-radius:4px;margin-top:20px;text-transform:uppercase;}
+/* ── BOTTOM NAVBAR (mobile only) ── */
+.bot-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(5,4,12,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(184,134,11,0.2);height:62px;padding:0 4px;justify-content:space-around;align-items:center;}
+.bot-nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 10px;border-radius:8px;text-decoration:none!important;color:rgba(253,252,247,0.45)!important;transition:all 0.2s;flex:1;min-width:0;}
+.bot-nav-item:hover,.bot-nav-item.active{color:var(--gold)!important;}
+.bot-nav-item.active .bot-nav-icon{filter:drop-shadow(0 0 4px var(--gold));}
+.bot-nav-icon{font-size:1.15rem;line-height:1;}
+.bot-nav-lbl{font-family:'Share Tech Mono',monospace;font-size:0.48rem;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
 
 /* ── LAYOUT ── */
 .section{padding:80px 48px;max-width:1200px;margin:0 auto;}
@@ -173,9 +166,6 @@ html,body,[data-testid="stAppViewContainer"]{background:transparent!important;co
 ::-webkit-scrollbar-track{background:#0f0c06;}
 ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
 
-/* ============================================
-   RESPONSIVE DESIGN - MOBILE FIRST APPROACH
-   ============================================ */
 
 /* Large Tablets & Small Laptops (1024px and below) */
 @media(max-width:1024px){
@@ -208,7 +198,10 @@ html,body,[data-testid="stAppViewContainer"]{background:transparent!important;co
     .nav-brand{font-size:1rem;}
     .nav-links{display:none;}
     .nav-cta{display:none;}
-    .hamburger{display:flex;}
+    .bot-nav{display:flex;}
+    /* extra bottom padding so content isn't hidden behind bottom nav */
+    .footer{padding-bottom:80px;}
+    .section{padding-bottom:80px;}
 
     /* Layout */
     .section,.section-hero{padding-left:20px;padding-right:20px;padding-top:60px;padding-bottom:60px;}
@@ -338,7 +331,7 @@ section[data-testid="stMain"]::-webkit-scrollbar-thumb{background:#b8860b!import
 .appview-container::-webkit-scrollbar-thumb{background:#b8860b!important;border-radius:3px!important;}
 [data-testid="block-container"],[data-testid="stVerticalBlock"]{overflow:visible!important;height:auto!important;max-height:none!important;}
 
-/* Responsive Column */
+/* Responsive Column Adjustments */
 @media(max-width:768px){
     [data-testid="stHorizontalBlock"]{flex-direction:column!important;}
     [data-testid="column"]{width:100%!important;flex:1 1 100%!important;min-width:auto!important;padding-left:0!important;padding-right:0!important;margin-bottom:20px!important;}
@@ -383,18 +376,14 @@ st.markdown(
     '<div class="glow-orb glow-orb-2"></div>'
     '<div class="glow-orb glow-orb-3"></div>'
     """
-<input type="checkbox" id="mob-toggle" style="position:absolute;opacity:0;width:0;height:0;pointer-events:none;">
-<label for="mob-toggle" class="mob-overlay-label"></label>
-<div class="mob-drawer">
-    <label for="mob-toggle" class="mob-close-btn">&#x2715;</label>
-    <label for="mob-toggle"><a class="mob-nav-link" href="#about">About</a></label>
-    <label for="mob-toggle"><a class="mob-nav-link" href="#education">Education &amp; Experience</a></label>
-    <label for="mob-toggle"><a class="mob-nav-link" href="#skills">Skills</a></label>
-    <label for="mob-toggle"><a class="mob-nav-link" href="#certifications">Certifications</a></label>
-    <label for="mob-toggle"><a class="mob-nav-link" href="#projects">Projects</a></label>
-    <label for="mob-toggle"><a class="mob-nav-link" href="#contact">Contact</a></label>
-    <a class="mob-nav-cta" href="mailto:sriramsailaggisetti@gmail.com">LET'S BUILD TOGETHER</a>
-</div>
+<!-- Pure CSS checkbox hack — works inside Streamlit iframes, zero JS needed -->
+<nav class="bot-nav" id="bot-nav">
+    <a class="bot-nav-item" href="#hero" data-mob-link><span class="bot-nav-icon">🏠</span><span class="bot-nav-lbl">Home</span></a>
+    <a class="bot-nav-item" href="#about" data-mob-link><span class="bot-nav-icon">👤</span><span class="bot-nav-lbl">About</span></a>
+    <a class="bot-nav-item" href="#skills" data-mob-link><span class="bot-nav-icon">⚡</span><span class="bot-nav-lbl">Skills</span></a>
+    <a class="bot-nav-item" href="#projects" data-mob-link><span class="bot-nav-icon">🚀</span><span class="bot-nav-lbl">Projects</span></a>
+    <a class="bot-nav-item" href="#contact" data-mob-link><span class="bot-nav-icon">✉️</span><span class="bot-nav-lbl">Contact</span></a>
+</nav>
 <nav class="navbar" id="top-navbar">
     <a class="nav-brand" href="#hero-eyebrow">SRIRAM <span>SAI</span></a>
     <div class="nav-links">
@@ -406,9 +395,7 @@ st.markdown(
         <a class="nav-link" href="#contact">Contact</a>
     </div>
     <a class="nav-cta" href="mailto:sriramsailaggisetti@gmail.com">LET'S BUILD TOGETHER</a>
-    <label for="mob-toggle" class="hamburger">
-        <span></span><span></span><span></span>
-    </label>
+
 </nav>
 <script>
 (function(){
@@ -422,6 +409,27 @@ st.markdown(
     function shoot(p){p.stimer--;if(p.stimer<=0){p.shoot=true;p.stimer=Math.random()*600+200;p.sx=Math.random()*W;p.sy=Math.random()*H*0.5;p.sl=Math.random()*80+40;p.so=1;}if(p.shoot){ctx.beginPath();ctx.moveTo(p.sx,p.sy);ctx.lineTo(p.sx-p.sl,p.sy+p.sl*0.3);var g=ctx.createLinearGradient(p.sx,p.sy,p.sx-p.sl,p.sy+p.sl*0.3);g.addColorStop(0,"rgba(255,255,255,"+p.so+")");g.addColorStop(1,"rgba(255,255,255,0)");ctx.strokeStyle=g;ctx.lineWidth=1.5;ctx.stroke();p.so-=0.025;if(p.so<=0)p.shoot=false;}}
     function draw(){ctx.clearRect(0,0,W,H);particles.forEach(function(p){p.tw+=p.tws;var op=p.a*(0.3+0.7*Math.abs(Math.sin(p.tw)));ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.col+op+")";ctx.fill();if(p.r>1.5){ctx.beginPath();ctx.arc(p.x,p.y,p.r*2.5,0,Math.PI*2);ctx.fillStyle=p.col+(op*0.15)+")";ctx.fill();}shoot(p);p.y-=p.spd;p.x+=p.drift;if(p.y<-5){p.y=H+5;p.x=Math.random()*W;}if(p.x<-5)p.x=W+5;if(p.x>W+5)p.x=-5;});requestAnimationFrame(draw);}
     draw();
+})();
+</script>
+<script>
+(function(){
+    function init(){
+        var links=document.querySelectorAll('[data-mob-link]');
+        if(!links.length){setTimeout(init,200);return;}
+        links.forEach(function(a){
+            a.addEventListener('click',function(e){
+                e.preventDefault();
+                var href=this.getAttribute('href');
+                var el=document.querySelector(href);
+                if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+                // highlight active
+                links.forEach(function(l){l.classList.remove('active');});
+                a.classList.add('active');
+            });
+        });
+    }
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}
+    else{init();}
 })();
 </script>
 """,
@@ -444,7 +452,7 @@ except:
 st.markdown(
     '<div id="hero"><div class="section-hero"><div class="hero-wrap">'
     '<div class="hero-left">'
-    '<div id ="hero-eyebrow" class="hero-eyebrow"><span class="typewriter-text">INITIALIZING</span></div>'
+    '<div id ="hero-eyebrow" class="hero-eyebrow"><span class="typewriter-text">INITIALIZING </span></div>'
     '<div class="hero-name">SRIRAM SAI<br><span>LAGGISETTI</span></div>'
     '<div class="hero-role">AI &amp; ML Engineer &nbsp;·&nbsp; Data Scientist</div>'
     '<div class="hero-desc">Final-year B.Tech CSE student at Aditya Engineering College (Graduating 2026) — passionate about '
