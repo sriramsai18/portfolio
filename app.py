@@ -360,7 +360,7 @@ if bg_b64:
         "<style>"
         ".stApp {"
         "  background-image:"
-        "    linear-gradient(rgba(5,4,12,0.75), rgba(5,4,12,0.75)),"
+        "    linear-gradient(rgba(5,4,12,0.79), rgba(5,4,12,0.79)),"
         "    url('data:image/jpeg;base64," + (bg_b64 or "") + "') !important;"
         "  background-size: cover !important;"
         "  background-position: center !important;"
@@ -678,6 +678,7 @@ st.markdown("""
     &nbsp;·&nbsp; @2026
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
