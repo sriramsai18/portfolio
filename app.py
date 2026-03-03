@@ -50,7 +50,7 @@ html,body,[data-testid="stAppViewContainer"]{background:transparent!important;co
 .nav-cta{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:1.5px;color:#1a160e!important;text-decoration:none!important;background:var(--gold);padding:8px 20px;border-radius:4px;transition:all 0.25s;margin-left:10px;text-transform:uppercase;font-weight:700;}
 .nav-cta:hover{background:var(--gold2);box-shadow:0 4px 20px rgba(184,134,11,0.45);}
 /* ── BOTTOM NAVBAR (mobile only) ── */
-.bot-nav{display:none;position:fixed;bottom:60px;left:0;right:0;z-index:9999;background:rgba(5,4,12,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(184,134,11,0.2);border-bottom:1px solid rgba(184,134,11,0.1);height:58px;padding:0 4px;justify-content:space-around;align-items:center;border-radius:16px 16px 0 0;}
+.bot-nav{display:none;position:fixed;bottom:72px;left:16px;right:16px;z-index:9999;background:rgba(5,4,12,0.35);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(184,134,11,0.18);height:58px;padding:0 8px;justify-content:space-around;align-items:center;border-radius:40px;}
 .bot-nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 10px;border-radius:8px;text-decoration:none!important;color:rgba(253,252,247,0.45)!important;transition:all 0.2s;flex:1;min-width:0;}
 .bot-nav-item:hover,.bot-nav-item.active{color:var(--gold)!important;}
 .bot-nav-item.active .bot-nav-icon{filter:drop-shadow(0 0 4px var(--gold));}
@@ -470,7 +470,7 @@ except:
 st.markdown(
     '<div id="hero"><div class="section-hero"><div class="hero-wrap">'
     '<div class="hero-left">'
-    '<div id ="hero-eyebrow" class="hero-eyebrow"><span class="typewriter-text">INITIALIZING</span></div>'
+    '<div id ="hero-eyebrow" class="hero-eyebrow"><span class="typewriter-text">INITIALIZING </span></div>'
     '<div class="hero-name">SRIRAM SAI<br><span>LAGGISETTI</span></div>'
     '<div class="hero-role">AI &amp; ML Engineer &nbsp;·&nbsp; Data Scientist</div>'
     '<div class="hero-desc">Final-year B.Tech CSE student at Aditya Engineering College (Graduating 2026) — passionate about '
