@@ -60,7 +60,7 @@ html,body,[data-testid="stAppViewContainer"]{background:transparent!important;co
 .mob-overlay-label{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s;cursor:pointer;}
 .mob-drawer{position:fixed;top:0;right:-100%;width:75%;max-width:300px;height:100vh;background:rgba(5,4,12,0.97);backdrop-filter:blur(20px);z-index:10000;transition:right 0.35s cubic-bezier(0.4,0,0.2,1);padding:80px 32px 40px;border-left:1px solid rgba(184,134,11,0.2);display:flex;flex-direction:column;gap:6px;}
 .mob-close-btn{align-self:flex-end;font-size:1.2rem;color:var(--gold);cursor:pointer;margin-bottom:16px;margin-top:-40px;}
-.mob-nav-link{font-family:'Share Tech Mono',monospace;font-size:0.8rem;letter-spacing:2px;color:rgba(253,252,247,0.7)!important;text-decoration:none!important;padding:14px 0;border-bottom:1px solid rgba(184,134,11,0.1);text-transform:uppercase;transition:color 0.2s;}
+.mob-nav-link{font-family:'Share Tech Mono',monospace;font-size:0.8rem;letter-spacing:2px;color:rgba(253,252,247,0.7)!important;text-decoration:none!important;padding:14px 0;border-bottom:1px solid rgba(184,134,11,0.1);text-transform:uppercase;transition:color 0.2s;display:block;width:100%;}.mob-drawer label{display:block;width:100%;cursor:pointer;}
 .mob-nav-link:hover{color:var(--gold3)!important;}
 .mob-nav-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:#1a160e!important;text-decoration:none!important;font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:1.5px;font-weight:700;padding:12px 20px;border-radius:4px;margin-top:20px;text-transform:uppercase;}
 
@@ -361,7 +361,7 @@ if bg_b64:
         "<style>"
         ".stApp {"
         "  background-image:"
-        "    linear-gradient(rgba(5,4,12,0.68), rgba(5,4,12,0.68)),"
+        "    linear-gradient(rgba(5,4,12,0.80), rgba(5,4,12,0.80)),"
         "    url('data:image/jpeg;base64," + (bg_b64 or "") + "') !important;"
         "  background-size: cover !important;"
         "  background-position: center !important;"
@@ -383,17 +383,16 @@ st.markdown(
     '<div class="glow-orb glow-orb-2"></div>'
     '<div class="glow-orb glow-orb-3"></div>'
     """
-
 <input type="checkbox" id="mob-toggle" style="position:absolute;opacity:0;width:0;height:0;pointer-events:none;">
 <label for="mob-toggle" class="mob-overlay-label"></label>
 <div class="mob-drawer">
     <label for="mob-toggle" class="mob-close-btn">&#x2715;</label>
-    <a class="mob-nav-link" href="#about">About</a>
-    <a class="mob-nav-link" href="#education">Education &amp; Experience</a>
-    <a class="mob-nav-link" href="#skills">Skills</a>
-    <a class="mob-nav-link" href="#certifications">Certifications</a>
-    <a class="mob-nav-link" href="#projects">Projects</a>
-    <a class="mob-nav-link" href="#contact">Contact</a>
+    <label for="mob-toggle"><a class="mob-nav-link" href="#about">About</a></label>
+    <label for="mob-toggle"><a class="mob-nav-link" href="#education">Education &amp; Experience</a></label>
+    <label for="mob-toggle"><a class="mob-nav-link" href="#skills">Skills</a></label>
+    <label for="mob-toggle"><a class="mob-nav-link" href="#certifications">Certifications</a></label>
+    <label for="mob-toggle"><a class="mob-nav-link" href="#projects">Projects</a></label>
+    <label for="mob-toggle"><a class="mob-nav-link" href="#contact">Contact</a></label>
     <a class="mob-nav-cta" href="mailto:sriramsailaggisetti@gmail.com">LET'S BUILD TOGETHER</a>
 </div>
 <nav class="navbar" id="top-navbar">
