@@ -455,7 +455,7 @@ except:
 st.markdown(
     '<div id="hero"><div class="section-hero"><div class="hero-wrap">'
     '<div class="hero-left">'
-    '<div id ="hero-eyebrow" class="hero-eyebrow"><span class="typewriter-text">INITIALIZING PORTFOLIO</span></div>'
+    '<div id ="hero-eyebrow" class="hero-eyebrow"><span class="typewriter-text">INITIALIZING</span></div>'
     '<div class="hero-name">SRIRAM SAI<br><span>LAGGISETTI</span></div>'
     '<div class="hero-role">AI &amp; ML Engineer &nbsp;·&nbsp; Data Scientist</div>'
     '<div class="hero-desc">Final-year B.Tech CSE student at Aditya Engineering College (Graduating 2026) — passionate about '
@@ -705,5 +705,6 @@ st.markdown("""
     &nbsp;·&nbsp; @2026
 </div>
 """, unsafe_allow_html=True)
+
 
 
