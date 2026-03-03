@@ -6,7 +6,7 @@ try:
     im= Image.open("assets/logo.png")
 except FileNotFoundError:
     im = None
-st.set_page_config(layout="wide", page_title="ＳＲＩＲムＭ ", page_icon=im)
+st.set_page_config(layout="wide", page_title="Sriram Sai | Portfolio", page_icon=im)
 
 def img_to_base64(path):
     try:
@@ -353,6 +353,11 @@ section[data-testid="stMain"]::-webkit-scrollbar-thumb{background:#b8860b!import
 </script>
 """, unsafe_allow_html=True)
 
+# ── BACKGROUND: stApp + rgba overlay ─────────────────────────────────────────
+# .stApp is the ONE selector Streamlit Cloud never overrides.
+# We set the bg image on .stApp, then stack a semi-transparent dark rgba on top
+# using a second background layer — no JS, no ::before, just pure CSS.
+# Adjust the rgba alpha (0.55) to control darkness: higher = darker.
 _bg_tag = ""
 if bg_b64:
     _bg_tag = (
@@ -381,14 +386,14 @@ st.markdown(
     '<div class="glow-orb glow-orb-2"></div>'
     '<div class="glow-orb glow-orb-3"></div>'
     """
-<div class="mob-drawer-overlay" id="mob-overlay" onclick="closeMobMenu()"></div>
+<div class="mob-drawer-overlay" id="mob-overlay"></div>
 <div class="mob-drawer" id="mob-drawer">
-    <a class="mob-nav-link" href="#about" onclick="closeMobMenu()">About</a>
-    <a class="mob-nav-link" href="#education" onclick="closeMobMenu()">Education & Experience</a>
-    <a class="mob-nav-link" href="#skills" onclick="closeMobMenu()">Skills</a>
-    <a class="mob-nav-link" href="#certifications" onclick="closeMobMenu()">Certifications</a>
-    <a class="mob-nav-link" href="#projects" onclick="closeMobMenu()">Projects</a>
-    <a class="mob-nav-link" href="#contact" onclick="closeMobMenu()">Contact</a>
+    <a class="mob-nav-link" href="#about">About</a>
+    <a class="mob-nav-link" href="#education">Education & Experience</a>
+    <a class="mob-nav-link" href="#skills">Skills</a>
+    <a class="mob-nav-link" href="#certifications">Certifications</a>
+    <a class="mob-nav-link" href="#projects">Projects</a>
+    <a class="mob-nav-link" href="#contact">Contact</a>
     <a class="mob-nav-cta" href="mailto:sriramsailaggisetti@gmail.com">LET'S BUILD TOGETHER</a>
 </div>
 <nav class="navbar" id="top-navbar">
@@ -402,24 +407,28 @@ st.markdown(
         <a class="nav-link" href="#contact">Contact</a>
     </div>
     <a class="nav-cta" href="mailto:sriramsailaggisetti@gmail.com">LET'S BUILD TOGETHER</a>
-    <button class="hamburger" id="hamburger" onclick="toggleMobMenu()" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
     </button>
 </nav>
 <script>
-function toggleMobMenu(){
-    var h=document.getElementById('hamburger');
-    var d=document.getElementById('mob-drawer');
-    var o=document.getElementById('mob-overlay');
-    h.classList.toggle('open');
-    d.classList.toggle('open');
-    o.classList.toggle('open');
-}
-function closeMobMenu(){
-    document.getElementById('hamburger').classList.remove('open');
-    document.getElementById('mob-drawer').classList.remove('open');
-    document.getElementById('mob-overlay').classList.remove('open');
-}
+(function(){
+    function init(){
+        var h=document.getElementById('hamburger');
+        var d=document.getElementById('mob-drawer');
+        var o=document.getElementById('mob-overlay');
+        if(!h||!d||!o){setTimeout(init,100);return;}
+        function openMenu(){h.classList.add('open');d.classList.add('open');o.classList.add('open');}
+        function closeMenu(){h.classList.remove('open');d.classList.remove('open');o.classList.remove('open');}
+        function toggle(){h.classList.contains('open')?closeMenu():openMenu();}
+        h.addEventListener('click',toggle);
+        o.addEventListener('click',closeMenu);
+        var links=d.querySelectorAll('.mob-nav-link,.mob-nav-cta');
+        links.forEach(function(l){l.addEventListener('click',closeMenu);});
+    }
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}
+    else{init();}
+})();
 </script>
 <script>
 (function(){
@@ -705,6 +714,3 @@ st.markdown("""
     &nbsp;·&nbsp; @2026
 </div>
 """, unsafe_allow_html=True)
-
-
-
