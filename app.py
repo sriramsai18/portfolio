@@ -354,23 +354,25 @@ section[data-testid="stMain"]::-webkit-scrollbar-thumb{background:#b8860b!import
 #     "</style>"
 # ) if bg_b64 else ""
 # _bg_tag = _bg_css
-_bg_js = ""
+_bg_tag = ""
 if bg_b64:
-    _bg_js = (
-        "<script>"
-        "(function(){"
-        "  var d=document.createElement('div');"
-        "  d.id='bg-layer';"
-        "  d.style.cssText='position:fixed;inset:0;z-index:-999;pointer-events:none;"
-        "background:url(\'data:image/jpeg;base64," + (bg_b64 or "") + "\') center/cover no-repeat fixed;"
-        "filter:brightness(0.45);';"
-        "  document.body.appendChild(d);"
-        "  document.documentElement.style.background='#05040c';"
-        "  document.body.style.background='transparent';"
-        "})();"
-        "</script>"
+    _bg_tag = (
+        "<style>"
+        ".stApp {"
+        "  background-image:"
+        "    linear-gradient(rgba(5,4,12,0.55), rgba(5,4,12,0.55)),"
+        "    url('data:image/jpeg;base64," + (bg_b64 or "") + "') !important;"
+        "  background-size: cover !important;"
+        "  background-position: center !important;"
+        "  background-attachment: fixed !important;"
+        "  background-repeat: no-repeat !important;"
+        "}"
+        "[data-testid='stAppViewContainer'], section[data-testid='stMain'],"
+        "[data-testid='block-container'], .main {"
+        "  background: transparent !important;"
+        "}"
+        "</style>"
     )
-_bg_tag = _bg_js
 
 st.markdown(
     _bg_tag +
@@ -676,6 +678,7 @@ st.markdown("""
     &nbsp;·&nbsp; @2026
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
