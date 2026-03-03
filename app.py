@@ -41,7 +41,7 @@ html,body,[data-testid="stAppViewContainer"]{background:transparent!important;co
 .stMarkdown>div{width:100%!important;}
 
 /* ── NAVBAR ── */
-.navbar{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(10,8,4,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,134,11,0.2);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:62px;}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(5,4,12,0.25);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid rgba(184,134,11,0.15);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:62px;}
 .nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:#fdfcf7!important;letter-spacing:2px;cursor:pointer;text-decoration:none!important;}
 .nav-brand span{color:var(--gold2);}
 .nav-links{display:flex;align-items:center;gap:2px;}
