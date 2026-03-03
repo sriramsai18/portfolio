@@ -338,7 +338,7 @@ section[data-testid="stMain"]::-webkit-scrollbar-thumb{background:#b8860b!import
 .appview-container::-webkit-scrollbar-thumb{background:#b8860b!important;border-radius:3px!important;}
 [data-testid="block-container"],[data-testid="stVerticalBlock"]{overflow:visible!important;height:auto!important;max-height:none!important;}
 
-/* Responsive Column Adjustments */
+/* Responsive Column */
 @media(max-width:768px){
     [data-testid="stHorizontalBlock"]{flex-direction:column!important;}
     [data-testid="column"]{width:100%!important;flex:1 1 100%!important;min-width:auto!important;padding-left:0!important;padding-right:0!important;margin-bottom:20px!important;}
@@ -361,7 +361,7 @@ if bg_b64:
         "<style>"
         ".stApp {"
         "  background-image:"
-        "    linear-gradient(rgba(5,4,12,0.80), rgba(5,4,12,0.80)),"
+        "    linear-gradient(rgba(5,4,12,0.68), rgba(5,4,12,0.68)),"
         "    url('data:image/jpeg;base64," + (bg_b64 or "") + "') !important;"
         "  background-size: cover !important;"
         "  background-position: center !important;"
@@ -383,8 +383,8 @@ st.markdown(
     '<div class="glow-orb glow-orb-2"></div>'
     '<div class="glow-orb glow-orb-3"></div>'
     """
-<!-- Pure CSS checkbox hack — works inside Streamlit iframes, zero JS needed -->
-<input type="checkbox" id="mob-toggle" style="display:none !important;">
+
+<input type="checkbox" id="mob-toggle" style="position:absolute;opacity:0;width:0;height:0;pointer-events:none;">
 <label for="mob-toggle" class="mob-overlay-label"></label>
 <div class="mob-drawer">
     <label for="mob-toggle" class="mob-close-btn">&#x2715;</label>
