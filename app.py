@@ -6,7 +6,7 @@ try:
     im= Image.open("assets/logo.png")
 except FileNotFoundError:
     im = None
-st.set_page_config(layout="wide", page_title="Sriram Sai | Portfolio", page_icon=im)
+st.set_page_config(layout="wide", page_title="ＳＲＩＲムＭ ", page_icon=im)
 
 def img_to_base64(path):
     try:
@@ -49,6 +49,18 @@ html,body,[data-testid="stAppViewContainer"]{background:transparent!important;co
 .nav-link:hover{color:var(--gold3)!important;background:rgba(184,134,11,0.1)!important;}
 .nav-cta{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:1.5px;color:#1a160e!important;text-decoration:none!important;background:var(--gold);padding:8px 20px;border-radius:4px;transition:all 0.25s;margin-left:10px;text-transform:uppercase;font-weight:700;}
 .nav-cta:hover{background:var(--gold2);box-shadow:0 4px 20px rgba(184,134,11,0.45);}
+.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;cursor:pointer;z-index:10001;background:transparent;border:none;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--gold);border-radius:2px;transition:all 0.3s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-drawer{position:fixed;top:0;right:-100%;width:75%;max-width:300px;height:100vh;background:rgba(5,4,12,0.97);backdrop-filter:blur(20px);z-index:10000;transition:right 0.35s cubic-bezier(0.4,0,0.2,1);padding:80px 32px 40px;border-left:1px solid rgba(184,134,11,0.2);display:flex;flex-direction:column;gap:6px;}
+.mob-drawer.open{right:0;}
+.mob-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.mob-drawer-overlay.open{opacity:1;pointer-events:all;}
+.mob-nav-link{font-family:'Share Tech Mono',monospace;font-size:0.8rem;letter-spacing:2px;color:rgba(253,252,247,0.7)!important;text-decoration:none!important;padding:14px 0;border-bottom:1px solid rgba(184,134,11,0.1);text-transform:uppercase;transition:color 0.2s;}
+.mob-nav-link:hover{color:var(--gold3)!important;}
+.mob-nav-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:#1a160e!important;text-decoration:none!important;font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:1.5px;font-weight:700;padding:12px 20px;border-radius:4px;margin-top:20px;text-transform:uppercase;}
 
 /* ── LAYOUT ── */
 .section{padding:80px 48px;max-width:1200px;margin:0 auto;}
@@ -193,7 +205,8 @@ html,body,[data-testid="stAppViewContainer"]{background:transparent!important;co
     .navbar{padding:0 16px;height:56px;}
     .nav-brand{font-size:1rem;}
     .nav-links{display:none;}
-    .nav-cta{font-size:0.55rem;padding:6px 12px;margin-left:4px;}
+    .nav-cta{display:none;}
+    .hamburger{display:flex;}
 
     /* Layout */
     .section,.section-hero{padding-left:20px;padding-right:20px;padding-top:60px;padding-bottom:60px;}
@@ -340,20 +353,6 @@ section[data-testid="stMain"]::-webkit-scrollbar-thumb{background:#b8860b!import
 </script>
 """, unsafe_allow_html=True)
 
-# _bg_css = (
-#     "<style>"
-#     "[data-testid=\"stAppViewContainer\"], .stApp {"
-#     "  background-image: url(\"data:image/jpeg;base64," + (bg_b64 or "") + "\") !important;"
-#     "  background-size: cover !important;"
-#     "  background-position: center !important;"
-#     "  background-attachment: fixed !important;"
-#     "}"
-#     "section[data-testid=\"stMain\"], [data-testid=\"block-container\"] {"
-#     "  background: transparent !important;"
-#     "}"
-#     "</style>"
-# ) if bg_b64 else ""
-# _bg_tag = _bg_css
 _bg_tag = ""
 if bg_b64:
     _bg_tag = (
@@ -382,6 +381,16 @@ st.markdown(
     '<div class="glow-orb glow-orb-2"></div>'
     '<div class="glow-orb glow-orb-3"></div>'
     """
+<div class="mob-drawer-overlay" id="mob-overlay" onclick="closeMobMenu()"></div>
+<div class="mob-drawer" id="mob-drawer">
+    <a class="mob-nav-link" href="#about" onclick="closeMobMenu()">About</a>
+    <a class="mob-nav-link" href="#education" onclick="closeMobMenu()">Education & Experience</a>
+    <a class="mob-nav-link" href="#skills" onclick="closeMobMenu()">Skills</a>
+    <a class="mob-nav-link" href="#certifications" onclick="closeMobMenu()">Certifications</a>
+    <a class="mob-nav-link" href="#projects" onclick="closeMobMenu()">Projects</a>
+    <a class="mob-nav-link" href="#contact" onclick="closeMobMenu()">Contact</a>
+    <a class="mob-nav-cta" href="mailto:sriramsailaggisetti@gmail.com">LET'S BUILD TOGETHER</a>
+</div>
 <nav class="navbar" id="top-navbar">
     <a class="nav-brand" href="#hero-eyebrow">SRIRAM <span>SAI</span></a>
     <div class="nav-links">
@@ -393,7 +402,25 @@ st.markdown(
         <a class="nav-link" href="#contact">Contact</a>
     </div>
     <a class="nav-cta" href="mailto:sriramsailaggisetti@gmail.com">LET'S BUILD TOGETHER</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMobMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
+<script>
+function toggleMobMenu(){
+    var h=document.getElementById('hamburger');
+    var d=document.getElementById('mob-drawer');
+    var o=document.getElementById('mob-overlay');
+    h.classList.toggle('open');
+    d.classList.toggle('open');
+    o.classList.toggle('open');
+}
+function closeMobMenu(){
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mob-drawer').classList.remove('open');
+    document.getElementById('mob-overlay').classList.remove('open');
+}
+</script>
 <script>
 (function(){
     var canvas=document.getElementById("particle-canvas");
@@ -678,17 +705,3 @@ st.markdown("""
     &nbsp;·&nbsp; @2026
 </div>
 """, unsafe_allow_html=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
