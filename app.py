@@ -363,7 +363,7 @@ if bg_b64:
         "  d.id='bg-layer';"
         "  d.style.cssText='position:fixed;inset:0;z-index:-999;pointer-events:none;"
         "background:url(\'data:image/jpeg;base64," + (bg_b64 or "") + "\') center/cover no-repeat fixed;"
-        "filter:brightness(0.65);';"
+        "filter:brightness(0.25);';"
         "  document.body.appendChild(d);"
         "  document.documentElement.style.background='#05040c';"
         "  document.body.style.background='transparent';"
@@ -676,6 +676,7 @@ st.markdown("""
     &nbsp;·&nbsp; @2026
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
