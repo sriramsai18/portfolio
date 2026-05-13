@@ -9,7 +9,7 @@ const PROJECTS = [
     desc: "Audio enhancement web app for denoising, transcription, and translation using AI.",
     tags: ["audio-enhancement", "denoising", "transcription", "translation"],
     date: "completed: march 2026",
-    href: "https://clearwav.vercel.app",
+    href: "https://clearwaveai.in",
   },
   {
     title: "Portfolio Website",
