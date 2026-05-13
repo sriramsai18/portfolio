@@ -15,7 +15,7 @@ export const DATA = {
     { role: "ai / ml intern",       org: "infinitude",   period: "may 25' – jun 25'" },
     { role: "data science intern",  org: "cognifyz technologies", period: "jun 25' – jul 25'" },
     { role: "data analyst intern", org: "SkillDizre", period: "apr 24' – jun 24'" },
-    { role: "Data Visualization Trainee", org: "Tata Group",  period: "jul 24' – jul 24'" },
+    { role: "data visualization trainee", org: "Tata Group",  period: "jul 24' – jul 24'" },
   ],
 
   projects: [
@@ -23,7 +23,7 @@ export const DATA = {
       label: "clearwave ai",
       desc: "audio enhancement — denoising, transcription, translation",
       role: "ai engineer",
-      href: "https://clearwav.vercel.app",
+      href: "https://clearwaveai.in",
     },
     {
       label: "sales & revenue dashboard",
