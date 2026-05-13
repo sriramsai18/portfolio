@@ -107,7 +107,7 @@ export default function Projects() {
           <a href={DATA.email}>collaborate</a>
           <a href={DATA.linkedin} target="_blank" rel="noreferrer">linkedin</a>
         </div>
-        <span>last updated: apr 2026</span>
+        <span>last updated: apr 2026'</span>
       </footer>
     </div>
   );
