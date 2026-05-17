@@ -12,6 +12,7 @@ export const DATA = {
   infosys: "https://www.infosys.com/careers/why-infosys/early-careers/Pages/index.aspx",
 
   experience: [
+    { role: "ai/ml intern", org:"Labmentix", period: "may 26' - present"},
     { role: "ai / ml intern",       org: "infinitude",   period: "may 25' – jun 25'" },
     { role: "data science intern",  org: "cognifyz technologies", period: "jun 25' – jul 25'" },
     { role: "data analyst intern", org: "SkillDizre", period: "apr 24' – jun 24'" },
