@@ -125,7 +125,7 @@ export default function Home() {
           <a href={DATA.linkedin} target="_blank" rel="noreferrer">linkedin</a>
           <a href={DATA.huggingface} target="_blank" rel="noreferrer">hf.co</a>
         </div>
-        <span>last updated: apr 2026</span>
+        <span>last updated: may 2026'</span>
       </footer>
     </div>
   );
